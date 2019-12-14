@@ -4,7 +4,21 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { inject, observer, Provider } from "mobx-react";
+import { MainModel } from './MainModel';
+const mainModel = new MainModel();
+
+
+
+const Root = (
+  <Provider mainModel={mainModel}>
+    <App />
+  </Provider >
+);
+
+
+
+ReactDOM.render(Root, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
